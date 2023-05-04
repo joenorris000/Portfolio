@@ -1,0 +1,98 @@
+---
+title: "Rent"
+author: "YOUR NAME"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:  
+    keep_md: true
+    toc: true
+    toc_float: true
+    code_folding: hide
+    fig_height: 6
+    fig_width: 12
+    fig_align: 'center'
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+
+**Week 1 Analysis**
+
+```{r, message=FALSE, warning=FALSE}
+# This gray area is called an "R-chunk". 
+# These library commands install some powerful functions for your use later on.
+library(mosaic)
+library(pander)
+library(tidyverse)
+library(DT) 
+
+# This read_csv command reads in the "Rent" data set into an object called "Rent"
+Rent <- read_csv("~/Data Analyticts/Portfolio/Portfolio/raw_data/Rent.csv")
+
+# To load this data set into your R-Console do the following:
+#  1. From your top file menu select "Session -> Set Working Directory -> To Source File Location"
+#  2. Press the green "play button" in the top right corner of this gray box (which is called an "R-chunk").
+#  3. Then in your "Console" window of 
+```
+
+<br />
+
+## Background
+
+Here is a data table showing the available approved housing apartment options at BYU-Idaho for single students. There are 122 entries comprising 57 female and 65 male apartment options.
+
+```{r, warning=FALSE}
+# Code to get you started. 
+# View(...) works great in the Console, but datatable(...) must be
+# used instead within an R-chunk.
+datatable(Rent, options=list(lengthMenu = c(3,10,30)), extensions="Responsive")
+```
+
+
+## Graphic
+
+<!-- Present an interesting graphic using the Rent data set. Do not create the same graphics that are shown in the [Good Example Analysis](./Analyses/StudentHousing.html), but you can certainly use those graphics as a guide to inspire you on what to do yourself. -->
+
+
+```{r}
+# Use this R-chunk to...
+# ...Create an interesting graphic using the Rent data set.
+
+boxplot(Price~Gender, data=Rent, xlab = "Gender of apartments", ylab = "Price of apartments", main = "Price of apartments seperated by gender", col=c("firebrick", "skyblue"))
+
+```
+
+
+<!-- Write a few statements here that explain your graphic and what it shows. -->
+
+Above is a Box plot separating the cost of approved BYUI housing by gender. The females are in yellow and the males are in blue.
+
+
+
+```{r}
+# Use this R-chunk to...
+# ...compute and display a meaningful table of numerical summaries supporting your above graphic.
+
+library(tidyverse)
+Rent %>% 
+  select(Gender,Price)%>%
+  na.omit()%>%
+  group_by(Gender) %>%
+  summarise(min = min(Price), Q1 = quantile(Price, 0.25), med = median(Price), Q3 = quantile(Price, 0.75), max = max(Price), mean= mean(Price)) %>%
+  pander()
+
+```
+
+<!-- Write a few statements here that introduce your table of numerical summaries and what they show. -->
+
+Here is a table of the numbers for the box plot plus the mean cost for the apartments. 
+
+
+## Conclusion
+
+It is interesting to note the difference between the two genders apartment cost. As you can see all of the statistics for the male housing are lower than the female.It would be interesting to see if the difference was because girls apartments are generally nicer than guys or if guys just get cheaper apartments regardless of the estimated price.  
+
+
+
