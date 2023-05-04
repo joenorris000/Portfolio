@@ -20,9 +20,11 @@ editor_options:
 
 
 
-## Background
+## Tableau 
 
-Use this week to finish your semester project. If you have been working on it all along then this should not be hard.
+I have created a Tableau dashboard to go along with the data set created in this r file. It can be acessed using the link below 
+
+https://public.tableau.com/views/NFLCombineDraftData/DemographicInformation?:language=en-US&:display_count=n&:origin=viz_share_link 
 
 
 ## Links to My Data
