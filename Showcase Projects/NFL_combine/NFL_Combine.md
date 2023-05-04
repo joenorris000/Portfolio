@@ -1,7 +1,7 @@
 ---
 title: "W06 Task: Data to Answer Questions"
 author: "Joseph Norris"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
+date: "May 04, 2023"
 output:
   html_document:  
     keep_md: true
@@ -15,16 +15,9 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r, echo=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
-```
 
-```{r load_libraries, include=FALSE}
-# Use this R-Chunk to load all your libraries!
-#install.packages("tidyverse") # run this line once in console to get package
-library(tidyverse)
-library(pander)
-```
+
+
 
 
 ## Background
@@ -45,21 +38,23 @@ https://www.pro-football-reference.com/draft/2022-combine.htm
 
 ## Loading in Data
 
-```{r load_data}
+
+```r
 # Use this R-Chunk to import all your datasets!
-combine_9_19 <- read_csv("~/Data Analyticts/Data wrangling/Data Wrangling/DS350_WI23_Norris_Jose/week_06/W06 Task Data to Answer Questions/NFL.csv")
+combine_9_19 <- read_csv("~/Data Analyticts/Portfolio/Portfolio/Showcase Projects/NFL_combine/Data/NFL.csv")
 
-combine_20 <- read_csv("~/Data Analyticts/Data wrangling/Data Wrangling/DS350_WI23_Norris_Jose/week_06/W06 Task Data to Answer Questions/2020_NFL_Combine_Data.csv")
+combine_20 <- read_csv("~/Data Analyticts/Portfolio/Portfolio/Showcase Projects/NFL_combine/Data//2020_NFL_Combine_Data.csv")
 
-combine_21 <- read_csv("~/Data Analyticts/Data wrangling/Data Wrangling/DS350_WI23_Norris_Jose/week_06/W06 Task Data to Answer Questions/2021_NFL_Combine_Data.csv")
+combine_21 <- read_csv("~/Data Analyticts/Portfolio/Portfolio/Showcase Projects/NFL_combine/Data/2021_NFL_Combine_Data.csv")
 
-combine_22 <- read_csv("~/Data Analyticts/Data wrangling/Data Wrangling/DS350_WI23_Norris_Jose/week_06/W06 Task Data to Answer Questions/2022_NFL_Combine_Data.csv")
+combine_22 <- read_csv("~/Data Analyticts/Portfolio/Portfolio/Showcase Projects/NFL_combine/Data/2022_NFL_Combine_Data.csv")
 ```
 
 
 ## Data Wrangling
 
-```{r tidy_data}
+
+```r
 # Use this R-Chunk to clean & wrangle your data!
 
 # Adds the year that the combine was taking for each of the 3 seperate year datasets 
@@ -124,7 +119,6 @@ complete_combine_drafted <- complete_combine %>%
 complete_combine_oline <- complete_combine %>%
   filter(Position == "OT" | Position == "OG" | Position == "OL" | Position == "c")%>%
   mutate(drafted = if_else(Drafted == "Yes", 1, 0))
-
 ```
 
 
@@ -132,7 +126,8 @@ complete_combine_oline <- complete_combine %>%
 
 ### Visualization
 
-```{r plot_data}
+
+```r
 # Use this R-Chunk to plot & visualize your data!
 complete_combine_drafted %>%
   select(Position, Player_Type)%>%
@@ -150,10 +145,9 @@ ggplot(aes(x = reorder(Position, total), y = total, fill = Player_Type))+
   scale_fill_discrete(name = "Player Type", 
                        labels = c("Defense", "Offense", "Special Teams"))+
   coord_flip()
-   
-
-
 ```
+
+![](NFL_Combine_files/figure-html/plot_data-1.png)<!-- -->
 
 ### Conclusion
 
@@ -163,7 +157,8 @@ ggplot(aes(x = reorder(Position, total), y = total, fill = Player_Type))+
 
 ### Visualization
 
-```{r}
+
+```r
 best_glm <- glm(drafted ~  Weight+ Sprint_40yd+ Vertical_Jump+
                Bench_Press_Reps+ Agility_3cone,
                data = complete_combine_oline, family = binomial)
@@ -172,7 +167,22 @@ b <- best_glm$coefficients
 
 b%>%
   knitr::kable(caption = "Coefficients")
+```
 
+
+
+Table: Coefficients
+
+|                 |          x|
+|:----------------|----------:|
+|(Intercept)      | 15.4587759|
+|Weight           |  0.0869169|
+|Sprint_40yd      | -3.3447615|
+|Vertical_Jump    |  0.0250494|
+|Bench_Press_Reps |  0.0612908|
+|Agility_3cone    | -1.5944615|
+
+```r
 all_gm_avg <- complete_combine_oline %>%
   summarise(Weight = round(mean(na.omit(Weight)), 4),
             "40yd Dash" = round(mean(na.omit(Sprint_40yd)), 2),
@@ -182,11 +192,17 @@ all_gm_avg <- complete_combine_oline %>%
 
 all_gm_avg %>%
   knitr::kable()
-
 ```
 
 
-```{r}
+
+|   Weight| 40yd Dash| Vertical Jump| Bench| Cone|
+|--------:|---------:|-------------:|-----:|----:|
+| 142.2823|      5.24|         58.73|    25| 7.83|
+
+
+
+```r
 ggplot(data = complete_combine_oline, aes(x = Weight, y = drafted))+
   geom_point(alpha = .1)+
   stat_function(fun = function(x) b[1] + b[2]*x + b[3]*5.249 + b[4]*58.726 +
@@ -198,6 +214,8 @@ ggplot(data = complete_combine_oline, aes(x = Weight, y = drafted))+
                      limits = c(0,1))+
   theme(panel.grid.minor.y = element_blank())
 ```
+
+![](NFL_Combine_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
 
 
