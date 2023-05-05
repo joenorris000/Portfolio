@@ -22,7 +22,7 @@ editor_options:
 
 ## Tableau 
 
-I have created a Tableau dashboard to go along with the data set created in this r file. It can be acessed using the link below 
+I have created a Tableau dashboard to go along with the data set created in this r file. It can be accessed using the link below 
 
 https://public.tableau.com/views/NFLCombineDraftData/DemographicInformation?:language=en-US&:display_count=n&:origin=viz_share_link 
 
@@ -223,8 +223,8 @@ ggplot(data = complete_combine_oline, aes(x = Weight, y = drafted))+
 
 ### Conclusion
 
-  The model shown above is shows how much your odds will increase based on an increase of 1 for each of the those values. So for example, if you were to increase your bench press by 1, you increase your odds of getting drafted by 0.06. The graph above shows the line of best fit for the weight variable when all of the other factors are set to the average. As you can see their is sharp increase starting around 133kg and ending about 143kg. If you are an offensive linemen then you want to be above 143kg or 315lb to have the best shot of getting drafted.
+  The model shown above shows how much your odds will increase based on an increase of 1 for each of the those values. So for example, if you were to increase your bench press by 1, you increase your odds of getting drafted by 0.06. The graph above shows the line of best fit for the weight variable when all of the other factors are set to the average. As you can see their is sharp increase starting around 133kg and ending about 143kg. If you are an offensive linemen then you want to be above 143kg or 315lb to have the best shot of getting drafted.
   
-  There are obviously other factors that this time of measurement does not take into account. This model was strictly based on data collected during the combine and does not factor in any stats that might have been gathered during a season. It also does not take into count skill level that can play a major role in deciding to draft someone or not. This analysis is simply designed to help add in the decision of what they should do to improve their chance of getting drafted. 
+  There are obviously other factors that this type of measurement does not take into account. This model was strictly based on data collected during the combine and does not factor in any stats that might have been gathered during a season. It also does not take into count skill level that can play a major role in deciding to draft someone or not. This analysis is simply designed to help add in the decision of what they should do to improve their chance of getting drafted. 
   
 
