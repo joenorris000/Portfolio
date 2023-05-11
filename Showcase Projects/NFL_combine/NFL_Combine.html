@@ -11,9 +11,9 @@
 
 <meta name="author" content="Joseph Norris" />
 
-<meta name="date" content="2023-05-04" />
+<meta name="date" content="2023-05-11" />
 
-<title>W06 Task: Data to Answer Questions</title>
+<title>Many Stats Are Important to Get Drafted but Which Are the Most Important?</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1573,13 +1573,25 @@ border-radius: 0px;
 
 
 
-<h1 class="title toc-ignore">W06 Task: Data to Answer Questions</h1>
+<h1 class="title toc-ignore">Many Stats Are Important to Get Drafted but
+Which Are the Most Important?</h1>
 <h4 class="author">Joseph Norris</h4>
-<h4 class="date">May 04, 2023</h4>
+<h4 class="date">May 11, 2023</h4>
 
 </div>
 
 
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>There are 73,712 college football players, of those, only 16,380 and
+only 254 get drafted (<a href="https://www.ncaa.org/sports/2015/2/27/football-probability-of-competing-beyond-high-school.aspx" class="uri">https://www.ncaa.org/sports/2015/2/27/football-probability-of-competing-beyond-high-school.aspx</a>).
+Those numbers can seem daunting to any young player who is interested in
+playing in the NFL. This can be especially true when only 7.3% of high
+school players even play College football. That is why I want to provide
+some information on who is drafted in the NFL. Specifically, I hope to
+answer which position is most likely to be drafted in and what are the
+most important factors for an offensive linemen to be drafted?</p>
+</div>
 <div id="tableau" class="section level2">
 <h2>Tableau</h2>
 <p>I have created a Tableau dashboard to go along with the data set
@@ -1672,7 +1684,7 @@ complete_combine_oline &lt;- complete_combine %&gt;%
   mutate(drafted = if_else(Drafted == &quot;Yes&quot;, 1, 0))</code></pre>
 </div>
 <div id="question-1-which-position-is-more-likely-to-be-drafted" class="section level2">
-<h2>Question 1 Which Position is more likely to be drafted</h2>
+<h2>Question 1 Which Position is More Likely to be Drafted?</h2>
 <div id="visualization" class="section level3">
 <h3>Visualization</h3>
 <pre class="r"><code># Use this R-Chunk to plot &amp; visualize your data!
@@ -1703,9 +1715,9 @@ constantly switching out after plays so a team tends to have a lot of
 these three positions.</p>
 </div>
 </div>
-<div id="question-2-what-are-the-most-important-factors-for-an-ofensive-linemen-to-be-drafted" class="section level2">
-<h2>Question 2: What are the Most Important Factors for an Ofensive
-Linemen to Be Drafted</h2>
+<div id="question-2-what-are-the-most-important-factors-for-an-offensive-linemen-to-be-drafted" class="section level2">
+<h2>Question 2: What Are the Most Important Factors for an Offensive
+Linemen to Be Drafted?</h2>
 <div id="visualization-1" class="section level3">
 <h3>Visualization</h3>
 <pre class="r"><code>best_glm &lt;- glm(drafted ~  Weight+ Sprint_40yd+ Vertical_Jump+

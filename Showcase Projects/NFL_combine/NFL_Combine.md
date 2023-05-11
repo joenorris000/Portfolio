@@ -1,7 +1,7 @@
 ---
-title: "W06 Task: Data to Answer Questions"
+title: "Many Stats Are Important to Get Drafted but Which Are the Most Important?"
 author: "Joseph Norris"
-date: "May 04, 2023"
+date: "May 11, 2023"
 output:
   html_document:  
     keep_md: true
@@ -18,6 +18,10 @@ editor_options:
 
 
 
+
+## Background 
+
+  There are 73,712 college football players, of those, only 16,380 and only 254 get drafted (https://www.ncaa.org/sports/2015/2/27/football-probability-of-competing-beyond-high-school.aspx). Those numbers can seem daunting to any young player who is interested in playing in the NFL. This can be especially true when only 7.3% of high school players even play College football. That is why I want to provide some information on who is drafted in the NFL. Specifically, I hope to answer which position is most likely to be drafted in and what are the most important factors for an offensive linemen to be drafted?
 
 
 ## Tableau 
@@ -124,7 +128,7 @@ complete_combine_oline <- complete_combine %>%
 ```
 
 
-## Question 1 Which Position is more likely to be drafted
+## Question 1 Which Position is More Likely to be Drafted?
 
 ### Visualization
 
@@ -155,7 +159,7 @@ ggplot(aes(x = reorder(Position, total), y = total, fill = Player_Type))+
 
   From the graph above, the best position to play if you want to be drafted into the NFL is a wide receiver. The second is a corner back and the third is a running back. This makes sense as these positions are constantly switching out after plays so a team tends to have a lot of these three positions. 
 
-## Question 2: What are the Most Important Factors for an Ofensive Linemen to Be Drafted
+## Question 2: What Are the Most Important Factors for an Offensive Linemen to Be Drafted?
 
 ### Visualization
 
